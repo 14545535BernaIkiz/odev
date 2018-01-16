@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+
+    <% @posts.each do |post| %>
+        <h1><%= post.title %> </br></h1>
+        <h3> <%= post.makale %></br></h3>
+        <h5><%= post.tarih %></br></h5>
+        <%= image_tag post.image.url(:thumb)%>
+        <%= link_to 'Show', post %>
+        <%if current_user.yetki?%>
+        <td>|<%= link_to 'Edit', edit_post_path(post) %></td>|
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+    <% end %>
+<hr width="100%" color="#990033" size="4">
+<br>
+<%if current_user.yetki?%>
+<%= link_to 'New Post', new_post_path %>
+<%end%>

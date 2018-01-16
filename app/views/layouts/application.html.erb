@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav>
+      <p class="pid">PROFİLE</p>|
+      <%=render 'devise/shared/navbar'%>
+      <br>
+      <br>
+    </nav>
+      <br>
+    <%= yield %>
+    <footer>
+    <center>  <h1>Rails Ortam Değişkenleri</h1></center>
+    <center>
+      <%request.env.each do|key,value|%>
+      <strong><%=key%></strong>=><%=value%> <br/>
+      <%end%>
+    </center>
+    </footer>
+  </body>
+</html>

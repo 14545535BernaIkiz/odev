@@ -1,0 +1,55 @@
+<div class="panel panel-default widget">
+
+    <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="row">
+
+                    <div class="col-xs-10 col-md-11">
+                        <div class="comment-text">
+
+                          <p id="notice"><%= notice %></p>
+
+                          <p>
+                            <strong>Title:</strong>
+                            <%= @post.title %>
+                          </p>
+
+                          <p>
+                            <strong>Makale:</strong>
+                            <%= @post.makale %>
+                          </p>
+
+                          <p>
+                            <strong>Tarih:</strong>
+                            <%= @post.tarih%>
+                          </p>
+                          <p>
+                            <strong>Image:</strong>
+                            <%= image_tag @post.image.url(:thumb)%>
+                          </p>
+
+                        </div>
+                        <hr>
+                        <div class="action">
+                            <%if current_user.yetki?%>
+                          <%= link_to '', @post, :method => :delete, data: {confirm: 'Eminmisin?',commit: 'Evet'},class:"glyphicon glyphicon-trash" %>
+                          <%= link_to '', edit_post_path(@post),class:"glyphicon glyphicon-pencil" %>
+                          <%end%>
+
+                        </div>
+                        <hr>
+                        <%=render 'comments/form'%>
+
+                        <hr>
+                        <div id="comments">
+                        <%@comments.each do |c|%>
+                         <%=image_tag c.user.image.url(:mini) if c.user.image?%> <em> <%=c.user.name%> </em> <b><%=c.bdy%> </b>    <br/>
+                        <%end%>
+                      </div>
+
+                    </div>
+            </li>
+        </ul>
+    </div>
+</div>
